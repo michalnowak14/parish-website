@@ -18,11 +18,13 @@ export async function generateStaticParams() {
   return slugs.map(({ slug }) => ({ slug: slug.current }));
 }
 
-interface Props {
+export default async function GalleryDetailPage({
+  params,
+  searchParams,
+}: {
   params: { slug: string };
-}
-
-export default async function GalleryDetailPage({ params }: Props) {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const gallery: Gallery = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{
       title,

@@ -20,7 +20,6 @@ export async function generateStaticParams() {
 
 export default async function GalleryDetailPage({
   params,
-  searchParams,
 }: {
   params: { slug: string };
   searchParams?: { [key: string]: string | string[] | undefined };

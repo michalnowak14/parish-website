@@ -1,5 +1,3 @@
-// app/galeria/[slug]/page.tsx
-
 import { client } from "@/src/sanity/client";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
@@ -13,27 +11,25 @@ interface Gallery {
   images: { asset: { _id: string; url: string } }[];
 }
 
-type Props = {
+// generateStaticParams must return an array of params like { slug: string }
+export async function generateStaticParams() {
+  const slugs: { slug: { current: string } }[] = await client.fetch(
+    groq`*[_type == "gallery" && defined(slug.current)]{ slug }`
+  );
+  return slugs.map(({ slug }) => ({ slug: slug.current }));
+}
+
+// Accept PageProps type — now properly inferred
+type PageProps = {
   params: { slug: string };
-  // Optional in case you're using searchParams too:
-  // searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-export function generateStaticParams() {
-  return client
-    .fetch(groq`*[_type == "gallery" && defined(slug.current)]{ slug }`)
-    .then((slugs: { slug: { current: string } }[]) =>
-      slugs.map(({ slug }) => ({ slug: slug.current }))
-    );
+export default function GalleryPage(props: PageProps) {
+  return <GalleryPageContent {...props} />;
 }
 
-export default function GalleryDetailPage(props: Props) {
-  // NEW: Make the inner logic async, not the component itself
-  return <GalleryDetailPageContent {...props} />;
-}
-
-// Inner async component to handle async logic
-async function GalleryDetailPageContent({ params }: Props) {
+// Move async logic into inner component
+async function GalleryPageContent({ params }: PageProps) {
   const gallery: Gallery = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{
       title,

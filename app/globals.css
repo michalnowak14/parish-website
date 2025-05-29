@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --nav-bgc: #a7c7e7;
 }
 
 @theme inline {
@@ -18,9 +19,79 @@
     --foreground: #ededed;
   }
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+/* .background-image {
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 0) 100%),
+    url("../public/cardImg.jpg");
+  background-size: cover;
+} */
+
+.page-header {
+  background-color: var(--nav-bgc);
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-image: url("../public/banner.jpg");
+  position: relative;
+  color: white;
+  overflow: hidden;
+}
+
+/* Gradient przyciemniający od góry do dołu */
+.page-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Zapewnij, że zawartość headera jest nad gradientem */
+.page-header > * {
+  position: relative;
+  z-index: 2;
+}
+.page-header[data-bg="default"] {
+  background-image: url("../public/banner.jpg");
+}
+.page-header[data-bg="dsm"] {
+  background-image: url("../public/dsm.jpg");
+}
+.page-header[data-bg="kso"] {
+  background-image: url("../public/kso.jpg");
+}
+.page-header[data-bg="roza-rozancowa"] {
+  background-image: url("../public/roza-rozancowa.jpg");
+}
+.page-header[data-bg="margaretka"] {
+  background-image: url("../public/margaretka.webp");
+}
+.page-header[data-bg="chor"] {
+  background-image: url("../public/chor.jpg");
+}
+.page-header h1 {
+  font-size: 3.75rem; /* Tailwind's text-6xl */
+  padding: 1.75rem; /* Tailwind's p-7 */
+  font-weight: 700; /* Tailwind's font-bold */
+  color: white;
+  margin-bottom: 50px;
 }

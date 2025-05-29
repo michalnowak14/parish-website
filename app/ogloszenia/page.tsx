@@ -1,4 +1,3 @@
-// app/announcements/page.tsx
 import { client } from "@/src/sanity/client";
 import { groq } from "next-sanity";
 import AnnouncmentCard from "@/components/AnnouncmentCard";
@@ -12,8 +11,15 @@ const query = groq`
   }
 `;
 
+interface Announcement {
+  title: string;
+  subtitle: string;
+  slug: string;
+  imageUrl: string;
+}
+
 export default async function AnnouncementsPage() {
-  const announcements = await client.fetch(query);
+  const announcements: Announcement[] = await client.fetch(query);
 
   return (
     <div>
@@ -26,7 +32,7 @@ export default async function AnnouncementsPage() {
           najważniejsze informacje dotyczące życia naszej parafii.
         </h3>
         <ul className="p-6 flex flex-wrap gap-6 justify-center">
-          {announcements.map((a: any) => (
+          {announcements.map((a) => (
             <AnnouncmentCard
               key={a.slug}
               imageUrl={a.imageUrl}

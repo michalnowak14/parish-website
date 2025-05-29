@@ -46,7 +46,7 @@ export default function Page() {
               indywidualnie.
             </li>
             <li>Nie podróżuj prywatnymi samochodami bez zgody rodziców.</li>
-            <li>Nie przechodź na "ty" z dorosłymi.</li>
+            <li>Nie przechodź na &quot;ty&quot; z dorosłymi.</li>
             <li>Unikaj wypowiedzi o treści seksualnej w obecności dzieci.</li>
             <li>Zakaz przemocy fizycznej i psychicznej wobec dzieci.</li>
           </ul>

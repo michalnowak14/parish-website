@@ -1,7 +1,6 @@
 import { client } from "@/src/sanity/client";
 import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
-import Image from "next/image";
 import Link from "next/link";
 
 export async function generateStaticParams() {

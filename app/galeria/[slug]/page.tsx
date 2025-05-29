@@ -1,3 +1,5 @@
+// app/galeria/[slug]/page.tsx
+
 import { client } from "@/src/sanity/client";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
@@ -11,26 +13,16 @@ interface Gallery {
   images: { asset: { _id: string; url: string } }[];
 }
 
-// generateStaticParams must return an array of params like { slug: string }
-export async function generateStaticParams() {
-  const slugs: { slug: { current: string } }[] = await client.fetch(
-    groq`*[_type == "gallery" && defined(slug.current)]{ slug }`
-  );
-  return slugs.map(({ slug }) => ({ slug: slug.current }));
-}
-
-// Accept PageProps type — now properly inferred
 type PageProps = {
   params: { slug: string };
 };
 
-export default function GalleryPage(props: PageProps) {
-  return <GalleryPageContent {...props} />;
+export default function Page(props: PageProps) {
+  return <GalleryContent {...props} />;
 }
 
-// Move async logic into inner component
-async function GalleryPageContent({ params }: PageProps) {
-  const gallery: Gallery = await client.fetch(
+async function GalleryContent({ params }: PageProps) {
+  const gallery: Gallery | null = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{
       title,
       description,

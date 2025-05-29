@@ -1,3 +1,5 @@
+// app/galeria/[slug]/page.tsx
+
 import { client } from "@/src/sanity/client";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
@@ -11,23 +13,27 @@ interface Gallery {
   images: { asset: { _id: string; url: string } }[];
 }
 
-export async function generateStaticParams() {
-  const slugs: { slug: { current: string } }[] = await client.fetch(
-    groq`*[_type == "gallery" && defined(slug.current)]{ slug }`
-  );
-  return slugs.map(({ slug }) => ({ slug: slug.current }));
+type Props = {
+  params: { slug: string };
+  // Optional in case you're using searchParams too:
+  // searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+export function generateStaticParams() {
+  return client
+    .fetch(groq`*[_type == "gallery" && defined(slug.current)]{ slug }`)
+    .then((slugs: { slug: { current: string } }[]) =>
+      slugs.map(({ slug }) => ({ slug: slug.current }))
+    );
 }
 
-interface Props {
-  params: {
-    slug: string; // <-- just string here, no Promise
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
+export default function GalleryDetailPage(props: Props) {
+  // NEW: Make the inner logic async, not the component itself
+  return <GalleryDetailPageContent {...props} />;
 }
 
-export default async function GalleryDetailPage({ params }: Props) {
-  const { slug } = params; // slug is plain string here
-
+// Inner async component to handle async logic
+async function GalleryDetailPageContent({ params }: Props) {
   const gallery: Gallery = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{
       title,
@@ -41,7 +47,7 @@ export default async function GalleryDetailPage({ params }: Props) {
         }
       }
     }`,
-    { slug }
+    { slug: params.slug }
   );
 
   if (!gallery) return notFound();
@@ -78,7 +84,6 @@ export default async function GalleryDetailPage({ params }: Props) {
 
       <main className="max-w-5xl mx-auto py-10 px-4">
         <p className="text-xl mb-6">{gallery.description}</p>
-        {/* Pass data to Client Component */}
         <GalleryLightbox images={gallery.images} title={gallery.title} />
       </main>
     </div>

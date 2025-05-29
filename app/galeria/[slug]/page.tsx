@@ -20,14 +20,13 @@ export async function generateStaticParams() {
 
 interface Props {
   params: {
-    slug: string | Promise<string>;
+    slug: string; // <-- just string here, no Promise
   };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export default async function GalleryDetailPage({ params }: Props) {
-  // Await slug in case it's a Promise
-  const slug = await params.slug;
+  const { slug } = params; // slug is plain string here
 
   const gallery: Gallery = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{

@@ -10,10 +10,11 @@ interface Gallery {
   coverImageUrl?: string;
   images: { asset: { _id: string; url: string } }[];
 }
-type tParams = { slug: string[] };
+type Params = Promise<{ slug: string[] }>;
 
-export default async function Page({ params }: { params: tParams }) {
-  const { slug } = params;
+export default async function Page({ params }: { params: Params }) {
+const { slug } = await params;
+}
 
   const gallery: Gallery | null = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{

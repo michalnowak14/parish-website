@@ -5,7 +5,7 @@ export default function Page() {
     <div>
       {" "}
       <header className="page-header">
-        <h1 className="text-6xl p-7 font-bold">
+        <h1 className="text-5xl p-7 font-bold">
           Standardy ochrony małoletnich
         </h1>
       </header>
@@ -15,7 +15,7 @@ export default function Page() {
             <a
               href="/Standardy_Parafie.pdf"
               download
-              className="inline-block px-6 py-3  text-emerald-900 rounded-lg "
+              className="inline-block px-6 py-3  text-amber-900 rounded-lg "
             >
               Pobierz PDF: Standardy Parafii
             </a>

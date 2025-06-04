@@ -21,7 +21,7 @@ export default function HomePage() {
       </section>
 
       {/* Info Section */}
-      <section className="max-w-4xl mx-auto px-6 py-16 text-gray-800 leading-relaxed text-lg space-y-8">
+      <section className="max-w-4xl mx-auto px-6 py-16 leading-relaxed text-lg space-y-8">
         <p>
           Witamy na stronie Parafii Opatrzności Bożej w Jodłówce-Wałkach!
           Znajdziesz tu wszystkie najważniejsze aktualności oraz informacje z

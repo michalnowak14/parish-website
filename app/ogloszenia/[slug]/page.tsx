@@ -30,7 +30,7 @@ export default async function AnnouncementPage({
   return (
     <div>
       <header
-        className="h-[50vh] flex flex-col justify-end text-white bg-green-700 bg-cover bg-center"
+        className="h-[50vh] flex flex-col justify-end text-white bg-cover bg-center"
         style={{
           backgroundImage: announcement.imageUrl
             ? `linear-gradient(
@@ -43,7 +43,7 @@ export default async function AnnouncementPage({
         }}
       >
         <div className="bg-transparent bg-opacity-50 p-7">
-          <h1 className="text-6xl font-bold">{announcement.title}</h1>
+          <h1 className="text-5xl font-bold">{announcement.title}</h1>
           {announcement.publishedAt && (
             <p className="text-lg italic">
               {new Date(announcement.publishedAt).toLocaleDateString("pl-PL", {
@@ -67,7 +67,7 @@ export default async function AnnouncementPage({
         </article>
         <Link
           href="/ogloszenia"
-          className="inline-block mt-10 text-green-700 hover:text-green-900 font-semibold transition"
+          className="inline-block mt-10 text-amber-700 hover:text-amber-900 font-semibold transition"
         >
           ← Wróć do ogłoszeń
         </Link>

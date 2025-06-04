@@ -11,7 +11,7 @@ const KontaktPage = () => {
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-4 mt-7">
         Jak skontaktować się z parafią Opatrzności Bożej w Jodłówce Wałkach?
       </h1>
-      <h2 className="text-lg md:text-xl text-center text-gray-700 mb-12 max-w-3xl mx-auto">
+      <h2 className="text-lg md:text-xl text-center text-gray-700 dark:text-gray-600 mb-12 max-w-3xl mx-auto">
         Zachęcamy do bezpośredniego kontaktu z nami – osobiście, telefonicznie
         lub za pośrednictwem poczty elektronicznej.
       </h2>

@@ -5,7 +5,7 @@ const page = () => {
         <header className="page-header" data-bg="default">
           <h1 className="text-6xl p-7 font-bold">Grupy Parafialne</h1>
         </header>
-        <article className="max-w-3xl mx-auto px-6 py-12 text-gray-800 text-lg leading-relaxed">
+        <article className="max-w-3xl mx-auto px-6 py-12  text-lg leading-relaxed">
           <p className="mb-4">
             W naszej parafii działają różnorodne grupy formacyjne i wspólnoty,
             które umożliwiają wiernym aktywne uczestnictwo w życiu Kościoła i
@@ -30,11 +30,11 @@ const page = () => {
         <header className="page-header" data-bg="dsm">
           <h1 className="text-6xl p-7 font-bold">DSM</h1>
         </header>
-        <article className="max-w-4xl mx-auto px-4 py-10 text-lg leading-relaxed text-gray-800">
+        <article className="max-w-4xl mx-auto px-4 py-10 text-lg leading-relaxed ">
           <h2 className="text-2xl font-semibold mb-4">
             Dziewczęca Służba Maryjna
           </h2>
-          <blockquote className="italic text-center text-gray-600 mb-6">
+          <blockquote className="italic text-center  mb-6">
             &quot;...Idąc za Nią, nie schodzisz na manowce,
             <br />
             modląc się do Niej nie wpadasz w rozpacz,
@@ -75,7 +75,7 @@ const page = () => {
             <strong>„Pięciu Zadań Dziecka Maryi”</strong>.
           </p>
 
-          <blockquote className="border-l-4 border-amber-600 pl-4 italic text-gray-700 mb-6">
+          <blockquote className="border-l-4 border-amber-600 pl-4 italic  mb-6">
             Matka Boża, Królowa Polski, zatroskana o losy swego Syna na polskiej
             ziemi, czeka na wiernych pomocników i sługi całkowicie sobie oddane,
             jak św. Maksymilian, kard. Stefan Wyszyński, Łucja, Hiacynta czy
@@ -118,7 +118,7 @@ const page = () => {
         <header className="page-header" data-bg="kso">
           <h1 className="text-6xl p-7 font-bold">KSM</h1>
         </header>
-        <article className="max-w-3xl mx-auto px-6 py-12 text-gray-800 text-lg leading-relaxed">
+        <article className="max-w-3xl mx-auto px-6 py-12  text-lg leading-relaxed">
           <h2 className="text-2xl font-semibold mb-4">Grupa Młodzieżowa</h2>
           <p className="mb-4">
             Spotkania Grupy Młodzieżowej odbywają się w{" "}
@@ -143,7 +143,7 @@ const page = () => {
         <header className="page-header">
           <h1 className="text-6xl p-7 font-bold">Liturgiczna Służba Ołtarza</h1>
         </header>
-        <article className="max-w-3xl mx-auto px-6 py-12 text-gray-800 text-lg leading-relaxed">
+        <article className="max-w-3xl mx-auto px-6 py-12  text-lg leading-relaxed">
           <h2 className="text-2xl font-semibold mb-4">
             Liturgiczna Służba Ołtarza
           </h2>
@@ -171,7 +171,7 @@ const page = () => {
         <header className="page-header" data-bg="chor">
           <h1 className="text-6xl p-7 font-bold">Chór Parafialny</h1>
         </header>
-        <article className="max-w-3xl mx-auto px-6 py-12 text-gray-800 text-lg leading-relaxed">
+        <article className="max-w-3xl mx-auto px-6 py-12  text-lg leading-relaxed">
           <h2 className="text-2xl font-semibold mb-4">Chór Parafialny</h2>
           <p className="mb-4">
             Chór parafialny jest ważną częścią życia liturgicznego naszej
@@ -195,7 +195,7 @@ const page = () => {
         <header className="page-header" data-bg="roza-rozancowa">
           <h1 className="text-6xl p-7 font-bold">Róże różańcowe</h1>
         </header>
-        <article className="max-w-3xl mx-auto px-6 py-12 text-gray-800 text-lg leading-relaxed">
+        <article className="max-w-3xl mx-auto px-6 py-12  text-lg leading-relaxed">
           <h2 className="text-2xl font-semibold mb-4">
             Róże Różańcowe w naszej Parafii:
           </h2>
@@ -205,9 +205,7 @@ const page = () => {
             <li>Róża Św. Rity</li>
             <li>
               Róża Św. Moniki{" "}
-              <span className="text-sm text-gray-600">
-                (różaniec rodziców za dzieci)
-              </span>
+              <span className="text-sm ">(różaniec rodziców za dzieci)</span>
             </li>
             <li>Róża Najświętszego Serca Pana Jezusa</li>
             <li>Róża Św. Józefa</li>
@@ -219,7 +217,7 @@ const page = () => {
         <header className="page-header">
           <h1 className="text-6xl p-7 font-bold">Akcja Katolicka Caritas</h1>
         </header>
-        <article className="max-w-3xl mx-auto px-6 py-12 text-gray-800 text-lg leading-relaxed">
+        <article className="max-w-3xl mx-auto px-6 py-12  text-lg leading-relaxed">
           <h2 className="text-2xl font-semibold mb-4">
             Parafialny Oddział Caritas
           </h2>
@@ -265,7 +263,7 @@ const page = () => {
         <header className="page-header">
           <h1 className="text-6xl p-7 font-bold">Straż Honorowa NSPJ</h1>
         </header>
-        <article className="max-w-4xl mx-auto px-4 py-10 leading-relaxed text-lg text-gray-800">
+        <article className="max-w-4xl mx-auto px-4 py-10 leading-relaxed text-lg ">
           <h2 className="text-3xl font-bold mb-4">
             Straż Honorowa Najświętszego Serca Pana Jezusa
           </h2>
@@ -302,7 +300,7 @@ const page = () => {
         <header className="page-header" data-bg="margaretka">
           <h1 className="text-6xl p-7 font-bold">Apostolat Margaretka</h1>
         </header>
-        <article className="max-w-4xl mx-auto px-4 py-10 leading-relaxed text-lg text-gray-800">
+        <article className="max-w-4xl mx-auto px-4 py-10 leading-relaxed text-lg ">
           <h2 className="text-3xl font-bold mb-4">Apostolat Margaretka</h2>
           <p className="mb-6">
             Apostolat Margaretka to wspólnota osób świeckich, które świadome
@@ -335,7 +333,7 @@ const page = () => {
             W Apostolacie Margaretka istnieje duża dowolność w wyborze modlitw.
             Louise Ward stwierdziła:
           </p>
-          <blockquote className="italic border-l-4 border-amber-600 pl-4 text-gray-700 mb-6">
+          <blockquote className="italic border-l-4 border-amber-600 pl-4  mb-6">
             „Każdy ‘płatek’ może modlić się w sposób, który najlepiej mu
             odpowiada, każdy na swój sposób. Ruch nie oferuje specjalnej
             formuły. [...] Każdy człowiek jest niepowtarzalny. Każdy liść z

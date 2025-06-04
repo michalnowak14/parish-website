@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={`${poppins.className} dark:bg-neutral-800`}>
         <Nav></Nav>
         <main className="flex-1">{children}</main>
         <Footer></Footer>

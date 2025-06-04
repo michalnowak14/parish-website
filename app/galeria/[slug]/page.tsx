@@ -13,8 +13,7 @@ interface Gallery {
 type Params = Promise<{ slug: string[] }>;
 
 export default async function Page({ params }: { params: Params }) {
-const { slug } = await params;
-}
+  const { slug } = await params;
 
   const gallery: Gallery | null = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{

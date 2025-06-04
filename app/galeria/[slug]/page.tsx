@@ -16,7 +16,7 @@ export default async function Page({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
+  const slug = (await params).slug;
 
   const gallery: Gallery | null = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{

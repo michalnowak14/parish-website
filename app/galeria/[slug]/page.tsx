@@ -17,11 +17,7 @@ type PageProps = {
   params: { slug: string };
 };
 
-export default function Page(props: PageProps) {
-  return <GalleryContent {...props} />;
-}
-
-async function GalleryContent({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const gallery: Gallery | null = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{
       title,

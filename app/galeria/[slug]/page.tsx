@@ -1,5 +1,3 @@
-// app/galeria/[slug]/page.tsx
-
 import { client } from "@/src/sanity/client";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
@@ -13,8 +11,13 @@ interface Gallery {
   images: { asset: { _id: string; url: string } }[];
 }
 
-// ✅ Let Next.js handle param inference properly
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
   const gallery: Gallery | null = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{
       title,
@@ -28,7 +31,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         }
       }
     }`,
-    { slug: params.slug }
+    { slug }
   );
 
   if (!gallery) return notFound();

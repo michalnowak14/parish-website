@@ -13,11 +13,8 @@ interface Gallery {
   images: { asset: { _id: string; url: string } }[];
 }
 
-type PageProps = {
-  params: { slug: string };
-};
-
-export default async function Page({ params }: PageProps) {
+// ✅ Let Next.js handle param inference properly
+export default async function Page({ params }: { params: { slug: string } }) {
   const gallery: Gallery | null = await client.fetch(
     groq`*[_type == "gallery" && slug.current == $slug][0]{
       title,

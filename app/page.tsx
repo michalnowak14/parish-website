@@ -1,12 +1,37 @@
 import Image from "next/image";
+import { client } from "@/lib/sanity.client";
+import { PortableText } from "@portabletext/react";
 
-export default function HomePage() {
+// 🔍 GROQ Queries
+const announcementsQuery = `*[_type == "announcement" && isActive == true] | order(publishedAt desc)[0...3] {
+  _id,
+  title,
+  subtitle,
+  body,
+  publishedAt,
+  "imageUrl": image.asset->url
+}`;
+
+const intencjeQuery = `*[_type == "intencja"] | order(date asc)[0...5] {
+  _id,
+  title,
+  body,
+  date
+}`;
+
+export default async function HomePage() {
+  // 🟢 Pobieranie danych "na żywo" (bez cache)
+  const [announcements, intencje] = await Promise.all([
+    client.fetch(announcementsQuery, {}, { cache: "no-store" }),
+    client.fetch(intencjeQuery, {}, { cache: "no-store" }),
+  ]);
+
   return (
     <div className="flex flex-col overflow-hidden">
-      {/* Hero Section */}
+      {/* HERO */}
       <section className="relative w-screen h-screen">
         <Image
-          src="/main.jpg" // Replace with your image path
+          src="/main.jpg"
           alt="Parafia"
           fill
           className="object-cover"
@@ -20,14 +45,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Info Section */}
+      {/* INFO OGÓLNE */}
       <section className="max-w-4xl mx-auto px-6 py-16 leading-relaxed text-lg space-y-8">
         <p>
           Witamy na stronie Parafii Opatrzności Bożej w Jodłówce-Wałkach!
           Znajdziesz tu wszystkie najważniejsze aktualności oraz informacje z
-          życia naszej wspólnoty parafialnej. Zapraszamy do wspólnej modlitwy,
-          zaangażowania w grupy parafialne oraz do przeżywania liturgii w duchu
-          wiary i jedności.
+          życia naszej wspólnoty parafialnej.
         </p>
 
         <blockquote className="italic border-l-4 border-yellow-600 pl-4">
@@ -35,69 +58,56 @@ export default function HomePage() {
           <br />
           <span className="font-semibold block mt-2">– Prz 3,5</span>
         </blockquote>
+      </section>
 
-        <div>
-          <h3 className="text-xl font-semibold">Msze Św. i Nabożeństwa</h3>
-          <div className="mt-2 space-y-4">
-            <p>
-              <strong>Niedziela i święta:</strong>
-              <br />
-              godz. 7:00, 10:00, 15:00
-            </p>
+      {/* 🕊️ OGŁOSZENIA */}
+      <section className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-300">
+        <h2 className="text-3xl font-bold mb-8">Ogłoszenia parafialne</h2>
+        {announcements.length === 0 ? (
+          <p>Brak aktualnych ogłoszeń.</p>
+        ) : (
+            <div className="grid md:grid-cols-2 gap-10">
+              {announcements.map((item) => (
+                <div key={item._id} className="border rounded-2xl shadow p-6 bg-white">
+                  {item.imageUrl && (
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.title}
+                      width={800}
+                      height={400}
+                      className="rounded-xl mb-4 object-cover"
+                    />
+                  )}
+                  <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-gray-600 mb-2">{item.subtitle}</p>
+                  <p className="text-sm text-gray-500 mb-4">
+                    {new Date(item.publishedAt).toLocaleDateString("pl-PL")}
+                  </p>
+                  <PortableText value={item.body} />
+                </div>
+              ))}
+            </div>
+          )}
+      </section>
 
-            <p>
-              <strong>Dni powszednie:</strong>
-              <br />
-              poniedziałek, wtorek, czwartek, sobota – godz. 7:00
-              <br />
-              środa, piątek – godz. 18:00{" "}
-              <span className="italic">(czas zimowy godz. 17:00)</span>
-            </p>
-
-            <p>
-              <strong>Odpust parafialny:</strong>
-              <br />
-              ostatnia niedziela września
-            </p>
-
-            <p>
-              <strong>Nowenna do Bożej Opatrzności:</strong>
-              <br />
-              pierwszy czwartek miesiąca, godz. 18:00
-            </p>
-
-            <p>
-              <strong>Gorzkie Żale w Wielkim Poście:</strong>
-              <br />
-              niedziela godz. 14:00
-            </p>
-
-            <p>
-              <strong>Droga krzyżowa w Wielkim Poście:</strong>
-              <br />
-              piątek godz. 17:00
-            </p>
-
-            <p>
-              <strong>Roraty:</strong>
-              <br />
-              godz. 7:00
-            </p>
-
-            <p>
-              <strong>Nowenna do Matki Bożej Nieustającej Pomocy:</strong>
-              <br />
-              środa godz. 18:00{" "}
-              <span className="italic">(17:00 w czasie zimowym)</span>
-            </p>
-
-            <p>
-              <strong>Nowenna do Miłosierdzia Bożego:</strong>
-              <br />
-              piątek po Mszy Św.
-            </p>
-          </div>
-        </div>
+      {/* 🙏 INTENCJE */}
+      <section className="max-w-4xl mx-auto px-6 py-16 border-t border-gray-300">
+        <h2 className="text-3xl font-bold mb-8">Intencje mszalne</h2>
+        {intencje.length === 0 ? (
+          <p>Brak intencji.</p>
+        ) : (
+            <ul className="space-y-8">
+              {intencje.map((i) => (
+                <li key={i._id} className="bg-gray-50 p-6 rounded-xl shadow-sm">
+                  <h3 className="text-xl font-semibold mb-2">{i.title}</h3>
+                  <p className="text-gray-600 mb-1">
+                    {new Date(i.date).toLocaleDateString("pl-PL")}
+                  </p>
+                  <p className="text-gray-800">{i.body}</p>
+                </li>
+              ))}
+            </ul>
+          )}
       </section>
     </div>
   );

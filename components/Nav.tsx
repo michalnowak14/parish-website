@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Facebook } from "lucide-react";
+import Image from "next/image";
 
 const Nav = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -34,7 +35,7 @@ const Nav = () => {
     >
       <nav className="flex justify-between w-full px-8">
         <div>
-          <Link href="/">Logo</Link>
+          <Link href="/"><img src="/oko5.png" alt="" /></Link>
         </div>
 
         {/* Desktop nav */}
@@ -43,6 +44,8 @@ const Nav = () => {
             { label: "Parafia", href: "/" },
             { label: "Galeria", href: "/galeria" },
             { label: "Kontakt", href: "/kontakt" },
+            { label: "Ogłoszenia", href: "/ogloszenia" },
+            { label: "Intencje", href: "/intencje" },
           ].map((item) => (
             <li key={item.href} className="relative group">
               <Link
@@ -54,37 +57,7 @@ const Nav = () => {
             </li>
           ))}
 
-          {/* Aktualności dropdown */}
-          <li className="relative group">
-            <button
-              onClick={toggleNewsDropdown}
-              className="cursor-pointer transition-colors duration-300 hover:text-amber-600 relative after:block after:h-[2px] after:bg-amber-700 after:scale-x-0 after:transition-transform after:duration-300 after:origin-left group-hover:after:scale-x-100"
-            >
-              Aktualności
-            </button>
-            <ul
-              className={`absolute left-0 mt-2 bg-white text-black rounded shadow-lg overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-                isNewsDropdownOpen ? "max-h-40" : "max-h-0"
-              }`}
-            >
-              {[
-                { label: "Ogłoszenia", href: "/ogloszenia" },
-                { label: "Intencje", href: "/intencje" },
-              ].map((item) => (
-                <li
-                  key={item.href}
-                  className="px-4 py-2 hover:bg-amber-100 hover:text-amber-900 transition-colors duration-200"
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsNewsDropdownOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </li>
+    
 
           {/* Grupy parafialne dropdown */}
           <li className="relative group">
@@ -165,6 +138,8 @@ const Nav = () => {
               { label: "Parafia", href: "/" },
               { label: "Galeria", href: "/galeria" },
               { label: "Kontakt", href: "/kontakt" },
+              { label: "Ogłoszenia", href: "/ogloszenia" },
+              { label: "Intencje", href: "/intencje" },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -175,21 +150,7 @@ const Nav = () => {
                 {item.label}
               </Link>
             ))}
-            <button className="m-auto" onClick={toggleNewsDropdown}>
-              Aktualności
-            </button>
-            <div
-              className={`transition-[max-height] duration-300 ease-in-out overflow-hidden ml-4 flex flex-col gap-2 text-sm ${
-                isNewsDropdownOpen ? "max-h-40 mt-2" : "max-h-0"
-              }`}
-            >
-              <Link href="/ogloszenia" onClick={toggleMobileMenu}>
-                Ogłoszenia
-              </Link>
-              <Link href="/intencje" onClick={toggleMobileMenu}>
-                Intencje
-              </Link>
-            </div>
+            
 
             <button className="m-auto" onClick={toggleDropdown}>
               Grupy parafialne

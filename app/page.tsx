@@ -6,7 +6,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative w-screen h-screen">
         <Image
-          src="/main.jpg" // Replace with your image path
+          src="/main2.jpeg" // Replace with your image path
           alt="Parafia"
           fill
           className="object-cover"
@@ -16,7 +16,7 @@ export default function HomePage() {
           <h1 className="text-4xl md:text-6xl font-bold">
             Parafia Opatrzności Bożej
           </h1>
-          <h2 className="text-xl md:text-2xl mt-4">w Jodłówce Wałkach</h2>
+          <h2 className="text-xl md:text-2xl mt-4">w Jodłówce - Wałkach</h2>
         </div>
       </section>
 
